@@ -1,14 +1,14 @@
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark bg-blue scrolling-navbar" [containerInside]="false">
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark bg-blue scrolling-navbar">
   <logo>
-      <a class="logo navbar-brand" href="#"><strong>Tr3umphant.Designs</strong></a>
+      <a class="logo navbar-brand" routerLink=""><strong>Tr3umphant.Designs</strong></a>
   </logo>
   <links>
       <ul class="navbar-nav mr-auto">
           <li class="nav-item waves-light" mdbRippleRadius>
-              <a class="nav-link">About</a>
+              <a class="nav-link" routerLink="/about">About</a>
           </li>
           <li class="nav-item waves-light" mdbRippleRadius>
-              <a class="nav-link">Service</a>
+              <a class="nav-link" routerLink="/service">Service</a>
           </li>
           <li class="nav-item waves-light" mdbRippleRadius>
               <a class="nav-link">Projects</a>
@@ -23,18 +23,19 @@
           <a class="nav-link">Contact</a>
         </li>
       </ul>
+
       <ul class="navbar-nav nav-flex-icons">
           <li class="nav-item waves-light" mdbRippleRadius>
-              <a class="nav-link"><i class="fa fa-facebook"></i></a>
+              <a class="nav-link" href="https://www.facebook.com/tr3umphantdesigns/"><i class="fa fa-facebook"></i></a>
           </li>
           <li class="nav-item waves-light" mdbRippleRadius>
-              <a class="nav-link"><i class="fa fa-twitter"></i></a>
+              <a class="nav-link" href="https://twitter.com/tr3designs"><i class="fa fa-twitter"></i></a>
           </li>
           <li class="nav-item waves-light" mdbRippleRadius>
-              <a class="nav-link"><i class="fa fa-instagram"></i></a>
+              <a class="nav-link" href="https://www.instagram.com/tr3umphant.designs/?hl=en"><i class="fa fa-instagram"></i></a>
           </li>
           <li class="nav-item waves-light" mdbRippleRadius>
-            <a class="nav-link"><i class="fa fa-youtube"></i></a>
+            <a class="nav-link" href="https://www.youtube.com/channel/UCjcR0stkmPmeYkf9JDEq_ZQ"><i class="fa fa-youtube"></i></a>
         </li>
       </ul>
   </links>
