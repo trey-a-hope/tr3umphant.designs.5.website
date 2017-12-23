@@ -1,1 +1,386 @@
-<h1>Service Page</h1>
+<section id="service" class="animated fadeIn" style="padding: 30px 0">
+    <div class="container">    
+
+        <div class="row">
+            <div class="col">
+                <h1 class="orange-text animated zoomInRight"><strong>Service</strong></h1>
+                <hr>
+                <h4 class="animated zoomInRight">What Can I Do For You?</h4>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <p>With Tr3umphant.Designs, development for your next project is only a click away. As a personal developer with an ample amount of background experience, I can make your dream business plan, money venture, or even personal portfolio, come to life.</p>
+            </div>
+        </div>
+
+        <div class="row m-t-1">
+            <div class="col-md-12">
+                <!-- Stepers Wrapper -->
+                <ul class="stepper stepper-vertical">
+                    <!-- First Step -->
+                    <li class="completed">
+                        <div class="blue-text">
+                            <span class="circle">1</span>
+                            <span class="label">First Step - Contact <i class="fa fa-envelope"></i></span>
+                        </div>
+                        <div class="step-content lighten-3">
+                            <p>By contacting me via through this website, my email, and/or phone number, I can know that you are interested in the service. <strong>I am currently taking request for website development only.</strong></p>
+                        </div>
+                    </li>
+                    <!-- Second Step -->
+                    <li class="active">
+                        <div class="blue-text">
+                            <span class="circle">2</span>
+                            <span class="label">Second Step - Discussion/Planning <i class="fa fa-edit"></i></span>
+                        </div>
+                        <div class="step-content lighten-3">
+                            <p>We now need to iron out all the details of your request. To ensure you are getting the best deal for your project, we need to discuss which plan you choose, when you need it finished, the purpose of your project, and any other details pertaining to such. I take notes of any information provided to ensure nothing is left out of the development process.</p>
+                        </div>
+                    </li>
+                    <!-- Third Step -->
+                    <li class="active">
+                        <div class="blue-text">
+                            <span class="circle">3</span>
+                            <span class="label">Third Step - Development <i class="fa fa-code"></i></span>
+                        </div>
+                        <div class="step-content lighten-3">
+                            <p>Now I can start creating your app. The first half of the cost of you project will be due as a deposit. In order to insure you receive your product in a timely fashion, we will have the time estimate discussed in the prior step. In this period, I will be contacting you weekly for questions/updates with your app.</p>
+                        </div>
+                    </li>
+                    <!-- Fourth Step -->
+                    <li class="active">
+                        <div class="blue-text">
+                            <span class="circle">4</span>
+                            <span class="label">Forth Step - Completion <i class="fa fa-thumbs-up"></i></span>
+                        </div>
+                        <div class="step-content lighten-3">
+                            <p>At this point, your app is complete, and I will be walking you through the steps to putting your app on a server or market. The second half of the fee for development is due at this point as well.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col">
+                <h4>Website Quote Calculator</h4>
+                <p>Development pricing is very project specific, meaning these prices are not set in stone. Based on factors such as time, material needed, and purpose for your project, the fee can easily flucuate; these, however, are the most accurate estimates. <strong>Note - Payments will require half of the cost upfront as deposit, and the other half once the project is complete.</strong></p>
+                <p><strong>* represents Google's Firebase Feature. Pricing for Firebase may increase based on how much data is used, (check pricing <a href="https://firebase.google.com/pricing/">here</a>).</strong></p>
+                <p><strong>Google API Listing <a href="https://developers.google.com/apis-explorer/#p/">here</a>.</strong></p>
+            </div>
+        </div>
+
+        <!-- Quote Table -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Feature</th>
+                    <th>Description</th>
+                    <th>Cost</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Base Development Fee -->
+                <tr>
+                    <td>
+                        <i class="fa fa-keyboard-o orange-text"></i>
+                    </td>
+                    <td>
+                        Base Development Fee
+                    </td>
+                    <td>
+                        <strong>Automatic fee for labor on creating your project.</strong>
+                    </td>
+                    <td class="green-text">
+                        <strong>{{ baseDevelopmentCost | currency: "$" }}</strong>
+                    </td>
+                    <td>
+                        <fieldset class="form-group">
+                            <input type="checkbox" id="baseDevelopment" [checked]="baseDevelopment" (change)="baseDevelopment = !baseDevelopment" disabled/>
+                            <label for="baseDevelopment"></label>
+                        </fieldset>
+                    </td>
+
+                </tr>
+                <!-- Number of Pages -->
+                <tr>
+                    <td>
+                        <i class="fa fa-wpforms orange-text"></i>
+                    </td>
+                    <td>
+                        Number of Pages
+                    </td>
+                    <td>
+                        For single or multiple page applications.
+                    </td>
+                    <td class="green-text">
+                        <strong>{{ pageCost | currency: "$" }}/page</strong>
+                    </td>
+                    <td>
+                        <form class="range-field">
+                            <input type="range" min="0" max="20" ng-model="numberOfPages"/>
+                        </form>
+                    </td>
+                </tr>
+                <!-- Domain Name -->
+                <tr>
+                    <td>
+                        <i class="fa fa-pencil orange-text"></i>
+                    </td>
+                    <td>
+                        Domain Name
+                    </td>
+                    <td>
+                        The unique name that appears in the URL for your website.
+                    </td>
+                    <td class="green-text">
+                        <strong>{{ domainNameCost | currency: "$" }}/year</strong>
+                    </td>
+                    <td>
+                        <fieldset class="form-group">
+                            <input type="checkbox" id="domainName" [checked]="domainName" (change)="domainName = !domainName"/>
+                            <label for="domainName"></label>
+                        </fieldset>
+                    </td>
+                </tr>
+                <!-- Website Hosting -->
+                <tr>
+                    <td>
+                        <i class="fa fa-desktop orange-text"></i>
+                    </td>
+                    <td>
+                        Website Hosting
+                    </td>
+                    <td>
+                        Use my server, or host on your own server.
+                    </td>
+                    <td class="green-text">
+                        <strong>{{ websiteHostingCost | currency: "$" }}/year</strong>
+                    </td>
+                    <td>
+                        <fieldset class="form-group">
+                            <input type="checkbox" id="websiteHosting" [checked]="websiteHosting" (change)="websiteHosting = !websiteHosting"/>
+                            <label for="websiteHosting"></label>
+                        </fieldset>
+                    </td>
+                </tr>
+                <!-- Email Functionality -->
+                <tr>
+                    <td>
+                        <i class="fa fa-envelope orange-text"></i>
+                    </td>
+                    <td>
+                        E-Mail Functionality
+                    </td>
+                    <td>
+                        Ability to send forms through email to users.
+                    </td>
+                    <td class="green-text">
+                        <strong>{{ emailFunctionalityCost | currency: "$" }}</strong>
+                    </td>
+                    <td>
+                        <fieldset class="form-group">
+                            <input type="checkbox" id="emailFunctionality" [checked]="emailFunctionality" (change)="emailFunctionality = !emailFunctionality"/>
+                            <label for="emailFunctionality"></label>
+                        </fieldset>
+                    </td>
+                </tr>
+                <!-- Database Integration -->
+                <tr>
+                    <td>
+                        <i class="fa fa-database orange-text"></i>
+                    </td>
+                    <td>
+                        Database Integration*
+                    </td>
+                    <td>
+                        NoSQL Database, information is stored securly and accessed swiftly.
+                    </td>
+                    <td class="green-text">
+                        <strong>{{ databaseIntegrationCost | currency: "$" }}</strong>
+                    </td>
+                    <td>
+                        <fieldset class="form-group">
+                            <input type="checkbox" id="databaseIntegration" [checked]="databaseIntegration" (change)="databaseIntegration = !databaseIntegration"/>
+                            <label for="databaseIntegration"></label>
+                        </fieldset>
+                    </td>
+                </tr>
+                <!-- User Authentication -->
+                <tr>
+                    <td>
+                        <i class="fa fa-users orange-text"></i>
+                    </td>
+                    <td>
+                        User Authentication*
+                    </td>
+                    <td>
+                        Have users authenticate themselves by email & password, Facebook, Twitter, Google+, or Github.
+                    </td>
+                    <td class="green-text">
+                        <strong>{{ userAuthenticationCost | currency: "$" }}</strong>
+                    </td>
+                    <td>
+                        <fieldset class="form-group">
+                            <input type="checkbox" id="userAuthentication" [checked]="userAuthentication" (change)="userAuthentication = !userAuthentication"/>
+                            <label for="userAuthentication"></label>
+                        </fieldset>
+                    </td>
+
+                </tr>
+                <!-- Storage -->
+                <tr>
+                    <td>
+                        <i class="fa fa-clone orange-text"></i>
+                    </td>
+                    <td>
+                        Storage*
+                    </td>
+                    <td>
+                        Uploading of pdfs, word documents, pictures, videos, etc.
+                    </td>
+                    <td class="green-text">
+                        <strong>{{ storageCost | currency: "$" }}</strong>
+                    </td>
+                    <td>
+                        <fieldset class="form-group">
+                            <input type="checkbox" id="storage" [checked]="storage" (change)="storage = !storage"/>
+                            <label for="storage"></label>
+                        </fieldset>
+                    </td>
+
+                </tr>
+                <!-- Ecommerce -->
+                <tr>
+                    <td>
+                        <i class="fa fa-dollar orange-text"></i>
+                    </td>
+                    <td>
+                        Ecommerce
+                    </td>
+                    <td>
+                        Incorporate paid services into your app.
+                    </td>
+                    <td class="green-text">
+                        <strong>{{ ecommerceCost | currency: "$" }}</strong>
+                    </td>
+                    <td>
+                        <fieldset class="form-group">
+                            <input type="checkbox" id="ecommerce" [checked]="ecommerce" (change)="ecommerce = !ecommerce"/>
+                            <label for="ecommerce"></label>
+                        </fieldset>
+                    </td>
+
+                </tr>
+                <!-- Ongoing Website Maintenance -->
+                <tr>
+                    <td>
+                        <i class="fa fa-wrench orange-text"></i>
+                    </td>
+                    <td>
+                        Ongoing Website Maintenance
+                    </td>
+                    <td>
+                        To ensure your website stays up to date.
+                    </td>
+                    <td class="green-text">
+                        <strong>{{ ongoingWebsiteMaintenanceCost | currency: "$" }}/year</strong>
+                    </td>
+                    <td>
+                        <fieldset class="form-group">
+                            <input type="checkbox" id="ongoingWebsiteMaintenance" [checked]="ongoingWebsiteMaintenance" (change)="ongoingWebsiteMaintenance = !ongoingWebsiteMaintenance"/>
+                            <label for="ongoingWebsiteMaintenance"></label>
+                        </fieldset>
+                    </td>
+                </tr>
+                <!-- Google APIs -->
+                <tr>
+                    <td>
+                        <i class="fa fa-gears orange-text"></i>
+                    </td>
+                    <td>
+                        Google APIs
+                    </td>
+                    <td>
+                        Access to Maps, Analytics, AdMob, and more.
+                    </td>
+                    <td class="green-text">
+                        <strong>{{ googleAPICost | currency: "$" }}/API</strong>
+                    </td>
+                    <td>
+                        <form class="range-field">
+                            <input type="range" min="0" max="10" ng-model="numberOfGoogleAPIs"/>
+                        </form>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col">
+                <button class="btn orange pull-left" (click)="calculate()">Calculate Estimate</button>
+                <button [hidden]="!totalCost" class="btn blue pull-left" (click)="sendQuoteToContact()">Contact Now With This Quote</button>
+                <div class="md-form pull-right">
+                    <h1 class="green-text" [hidden]="!depositCost"><strong>{{ depositCost | currency: "$" }} Deposit</strong></h1>
+                    <h4 class="green-text" [hidden]="!totalCost">{{ totalCost | currency: "$" }} Total with deposit</h4>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                    <h4>Android Quote Calculator</h4>
+                    <p><strong>Coming Soon...</strong></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                    <h4>iOS Quote Calculator</h4>
+                    <p><strong>Coming Soon...</strong></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <hr>
+            </div>
+        </div>
+    </div> 
+</section>
+
+
+
+    <!-- <button type="button" class="btn btn-primary waves-light" data-toggle="modal" data-target="#basicExample" (click)="frame.show()" mdbRippleRadius>
+            Bottom
+        </button>
+            
+        <div mdbModal #frame="mdb-modal" class="modal fade bottom" id="frameModalBottom" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" [config]="{backdrop: false, ignoreBackdropClick: true}">
+            <div class="modal-dialog modal-frame modal-bottom" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="row px-4">
+                            <p class="pt-1 pr-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit nisi quo provident fugiat reprehenderit nostrum quos..</p>
+                            <button type="button" class="btn btn-secondary waves-light" data-dismiss="modal" (click)="frame.hide()" mdbRippleRadius>Close</button>
+                            <button type="button" class="btn btn-primary waves-light" mdbRippleRadius>Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+                            
