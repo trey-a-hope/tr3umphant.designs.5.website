@@ -125,9 +125,7 @@
                         <strong>{{ pageCost | currency: "$" }}/page</strong>
                     </td>
                     <td>
-                        <form class="range-field">
-                            <input type="range" min="0" max="20" ng-model="numberOfPages"/>
-                        </form>
+                        <input type="number" [(ngModel)]="numberOfPages" min="1" max="10">
                     </td>
                 </tr>
                 <!-- Domain Name -->
@@ -316,11 +314,8 @@
                         <strong>{{ googleAPICost | currency: "$" }}/API</strong>
                     </td>
                     <td>
-                        <form class="range-field">
-                            <input type="range" min="0" max="10" ng-model="numberOfGoogleAPIs"/>
-                        </form>
+                        <input type="number" [(ngModel)]="numberOfGoogleAPIs" min="0" max="10">
                     </td>
-
                 </tr>
             </tbody>
         </table>

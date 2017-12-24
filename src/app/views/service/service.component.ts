@@ -100,6 +100,6 @@ export class ServiceComponent implements OnInit {
     console.log(message);
 
     //this.$state.go('contact', { message: message });
-}
+  }
 
 }
