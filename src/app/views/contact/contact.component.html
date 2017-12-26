@@ -1,0 +1,62 @@
+<section id="contact" class="animated fadeIn" style="padding: 30px 0">
+  <div class="container">
+      <div class="row">
+          <div class="col">
+              <h1 class="orange-text animated zoomInRight"><strong>Contact</strong></h1>
+              <hr>
+          </div>
+      </div>
+      <br>
+      <div class="row">
+          <div class="col-sm-6">
+              <h4 class="animated zoomInRight">If you have a request already in mind or just have general questions, please submit a message.</h4>
+              <br>
+              <ng-form novalidate name="contactForm">
+                      <!--Body-->
+                      <div class="md-form">
+                          <i class="fa fa-user prefix"></i>
+                          <input type="text" id="name" class="form-control" required="required" [(ngModel)]="fullName">
+                          <label class="active" for="name">Your full name</label>
+                      </div>
+
+                      <div class="md-form">
+                          <i class="fa fa-envelope prefix"></i>
+                          <input type="text" id="email" class="form-control" required="required" ng-pattern="emailRegex" [(ngModel)]="email">
+                          <label class="active" for="email">Your email</label>
+                      </div>
+
+                      <div class="md-form">
+                          <i class="fa fa-tag prefix"></i>
+                          <textarea type="text" id="message" class="md-textarea" required="required"  [(ngModel)]="message" maxlength="400"></textarea>
+                          <label class="active" for="message">Message <strong>( {{ ( message.length ? message.length : '0' ) + '/' + messageLimit }} )</strong></label>
+                      </div>
+
+                      <div class="text-center">
+                          <button class="btn orange darken 1 " (click)="sendEmail(contactForm)">Send Message</button>
+                      </div>
+              </ng-form>
+          </div>
+          <div class="col-sm-6 text-center">
+              <h2>Like What You See?</h2>
+              <h5>Please share my website! It's quick and I'll thank you forever.</h5>
+              <div class="btn-group" dropdown>
+                <button type="button" class="btn orange darken 1  waves-light" mdbRippleRadius>Share My Website</button>
+                <button type="button" dropdownToggle class="btn orange darken 1 dropdown-toggle dropdown-toggle-split px-3 waves-light" mdbRippleRadius></button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" (click)="share('FACEBOOK')">To Facebook</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" (click)="share('TWITTER')">To Twitter</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" (click)="share('LINKEDIN')">To LinkedIn</a>
+                </div>
+              </div>     
+              <br>              
+              <i class="fa fa-envelope fa-5x" style="padding-top: 30px"></i>
+              <p>tr3umphant.designs@gmail.com</p>
+              <br>
+              <i class="fa fa-phone fa-5x" style="padding-top: 30px"></i>
+              <p>(937)270-5527</p>                
+          </div>
+      </div>
+  </div>
+</section>

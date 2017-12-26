@@ -15,6 +15,9 @@ import { AboutComponent }               from './views/about/about.component';
 import { ServiceComponent }             from './views/service/service.component';
 import { HomeComponent }                from './views/home/home.component';
 import { ProjectsComponent } from './views/projects/projects.component';
+import { ReviewsComponent } from './views/reviews/reviews.component';
+import { BlogsComponent } from './views/blogs/blogs.component';
+import { ContactComponent } from './views/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { ProjectsComponent } from './views/projects/projects.component';
     AboutComponent,
     ServiceComponent,
     HomeComponent,
-    ProjectsComponent
+    ProjectsComponent,
+    ReviewsComponent,
+    BlogsComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
