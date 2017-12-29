@@ -1,15 +1,25 @@
 <section id="blogs" class="animated fadeIn" style="padding: 30px 0">
-  <div class="container">
-      <div class="row">
-          <div class="col">
-              <h1 class="orange-text animated zoomInRight"><strong>Blogs</strong></h1>
-              <hr>
-              <h4 class="animated zoomInRight">Stay up to date with my development.</h4>
-          </div>
-      </div>
-      <br/>
-      <div class="row">
-
-      </div>
-  </div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1 class="orange-text animated zoomInRight"><strong>Blogs</strong></h1>
+                <hr>
+                <h4 class="animated zoomInRight">Stay up to date with my development.</h4>
+                <!-- {{ posts | json }} -->
+            </div>
+        </div>
+        <div class="row" *ngFor="let post of posts" style="padding-top: 40px">
+            <!--Avatar-->
+            <div class="col-12 col-sm-2">
+                <img src="http://mdbootstrap.com/img/Photos/Avatars/img%20(3).jpg" class="img-fluid rounded-circle z-depth-2">
+            </div>
+            <!--Author Data-->
+            <div class=" col-12 col-sm-10">
+                <h4><strong>{{ post.title }}</strong></h4>
+                <p><i class="fa fa-clock-o"></i> {{ post.published | date:'short' }} - {{ post.author.displayName }}</p>
+                <p [innerHTML]="post.content"></p>
+                <a class="btn orange darken 1" href="{{post.url}}">Read More</a>
+            </div>
+        </div>
+    </div>
 </section>

@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { EmailService } from '../../services/email.service';
 
 @Component({
   selector    : 'contact',
   templateUrl : './contact.component.html',
-  styleUrls   : ['./contact.component.scss']
+  styleUrls   : ['./contact.component.scss'],
+  providers: [
+      EmailService
+  ]
 })
 export class ContactComponent implements OnInit {
   fullName      : string;
@@ -13,34 +17,36 @@ export class ContactComponent implements OnInit {
   attemptedSend : boolean = false;
   emailRegex    : RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-  constructor() { }
+  constructor(private emailService: EmailService) { }
 
   ngOnInit() {
   }
 
   public sendEmail(form: any): void {
-    this.attemptedSend = true;
-    if(form.$valid){
-        var to: string = 'tr3umphant.designs@gmail.com';
-        var subject: string = 'New Contact - ' + this.fullName + ' via ' + this.email;
-        var body: string = this.message;
+    this.emailService.sendEmail().subscribe(data => console.log(data))
 
-        console.log(subject);
-        console.log(body);
+    // this.attemptedSend = true;
+    // if(form.$valid){
+    //     var to: string = 'tr3umphant.designs@gmail.com';
+    //     var subject: string = 'New Contact - ' + this.fullName + ' via ' + this.email;
+    //     var body: string = this.message;
 
-        // this.emailService.sendEmail(to, subject, body)
-        //     .then((result: any) => {
-        //         this.fullName = this.email = this.message = '';
-        //         form.$setPristine();
-        //         toastr.success('Message sent.');
-        //     })
-        //     .catch((error: any) => {
-        //         toastr.error('Could not send message at this time.');
-        //     });
-    }else{
-        alert('There were erros in your submission.');
-        //toastr.error('There were errors in your submission.');
-    }
+    //     console.log(subject);
+    //     console.log(body);
+
+    //     // this.emailService.sendEmail(to, subject, body)
+    //     //     .then((result: any) => {
+    //     //         this.fullName = this.email = this.message = '';
+    //     //         form.$setPristine();
+    //     //         toastr.success('Message sent.');
+    //     //     })
+    //     //     .catch((error: any) => {
+    //     //         toastr.error('Could not send message at this time.');
+    //     //     });
+    // }else{
+    //     alert('There were erros in your submission.');
+    //     //toastr.error('There were errors in your submission.');
+    // }
   }
 
   public share(provider: string): void {
