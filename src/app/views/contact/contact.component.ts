@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EmailService } from '../../services/email.service';
+import { ToasterService } from 'angular2-toaster';
 
 @Component({
   selector    : 'contact',
@@ -17,13 +18,30 @@ export class ContactComponent implements OnInit {
   attemptedSend : boolean = false;
   emailRegex    : RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-  constructor(private emailService: EmailService) { }
+  constructor(
+      private emailService: EmailService,
+      private toasterService: ToasterService
+    ) { }
 
   ngOnInit() {
   }
 
   public sendEmail(form: any): void {
-    this.emailService.sendEmail().subscribe(data => console.log(data))
+    let to      : string = 'tr3umphant.designs@gmail.com';
+    let subject : string = 'New Contact - ' + this.fullName;
+    let from    : string = this.email;
+    let message : string = this.message;
+
+    this.emailService.sendEmail(to, subject, from, message).subscribe(
+        res => {
+            this.toasterService.pop('success', 'Message Sent', 'I will respond shortly.');
+            //Clear form.
+        },
+        error => {
+            this.toasterService.pop('error', 'Error', 'Your message could not be sent at this time.');
+            console.log(error);
+        } 
+    )
 
     // this.attemptedSend = true;
     // if(form.$valid){
@@ -48,23 +66,4 @@ export class ContactComponent implements OnInit {
     //     //toastr.error('There were errors in your submission.');
     // }
   }
-
-  public share(provider: string): void {
-    var url: string = 'http://td4.tr3umphant-designs.com';
-    var text: string = 'Check out this software development service called Tr3umphant.Designs!';
-
-    switch (provider) {
-        case 'TWITTER':
-            window.open('http://twitter.com/share?url='+encodeURIComponent(url)+'&text='+encodeURIComponent(text), '', 'left=0,top=0,width=550,height=450,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
-            break;
-        case 'FACEBOOK':
-            window.open('http://facebook.com/sharer/sharer.php?u='+encodeURIComponent(url)+'&title='+encodeURIComponent(text), '', 'left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
-            break;
-        case 'LINKEDIN':
-            window.open('http://www.linkedin.com/shareArticle?mini=true&url='+encodeURIComponent(url)+'&text='+encodeURIComponent(text), '', 'left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
-            break;
-        default:
-            break;
-    }
-}
 }

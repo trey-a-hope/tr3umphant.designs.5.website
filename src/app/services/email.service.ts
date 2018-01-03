@@ -4,24 +4,25 @@ import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class EmailService {
-
-  url: string = "/src/api/sendEmail.php";
+  //Tacky, I know.
+  url: string = "http://tr3umphantdesignscom.fatcow.com/tr3umphant.designs.5.website/src/api/sendEmail.php";
 
   constructor(private http: Http) { }
+ 
+  public sendEmail(to: string, subject: string, from: string, message: string): Observable<any> {
 
-  public sendEmail(): Observable<any> {
-    let info = {
-      to: 'trey.a.hope@gmail.com',
-      from: 'freeman07@gmail.com',
-      message: 'This for the gang.'
-    }
+    let data = JSON.stringify({
+      to      : to,
+      subect  : subject,
+      from    : from,
+      message : message
+    });
 
-    let data    = JSON.stringify(info); // Stringify payload
-    let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
-    let options = new RequestOptions({ headers: headers }); // Create a request option
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
 
-    return this.http.post(this.url, data, options) // ...using post request
-                     .map(this.extractData) // ...and calling .json() on the response to return data
+    return this.http.post(this.url, data, options)
+                     .map(this.extractData)
                      .catch(this.handleErrorObservable); 
   }
 

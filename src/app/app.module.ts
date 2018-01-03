@@ -1,7 +1,10 @@
+//Imported Modules
 import { BrowserModule }                from '@angular/platform-browser';
 import { FormsModule }                  from '@angular/forms';
 import { NgModule, NO_ERRORS_SCHEMA }   from '@angular/core';
 import { MDBBootstrapModule }           from 'angular-bootstrap-md';
+import { ToasterModule }                from 'angular2-toaster';
+import { BrowserAnimationsModule }      from '@angular/platform-browser/animations'; //Needed for ToasterModule
 import { HttpModule }                   from '@angular/http';
 
 import { AppComponent }                 from './app.component';
@@ -42,7 +45,9 @@ import { BlogService }                  from './services/blog.service';
     FormsModule,
     MDBBootstrapModule.forRoot(),
     RoutingModule,
-    HttpModule
+    HttpModule,
+    ToasterModule,
+    BrowserAnimationsModule
   ],
   schemas: [ 
     NO_ERRORS_SCHEMA 
