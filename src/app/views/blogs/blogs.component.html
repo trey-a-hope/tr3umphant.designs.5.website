@@ -13,7 +13,18 @@
                 <h4><strong>{{ post.title }}</strong></h4>
                 <p><i class="fa fa-clock-o"></i> {{ post.published | date:'short' }} - {{ post.author.displayName }}</p>
                 <p [innerHTML]="post.content"></p>
-                <a class="btn orange darken 1" href="{{post.url}}">Read More</a>
+                <a class="btn orange darken 1" href="{{post.url}}"><i class="fa fa-eye fa-5x"></i> Read More</a>
+                <div class="btn-group" dropdown>
+                    <button type="button" class="btn btn-danger waves-light" mdbRippleRadius><i class="fa fa-share fa-5x"></i> Share</button>
+                    <button type="button" dropdownToggle class="btn btn-danger dropdown-toggle dropdown-toggle-split px-3 waves-light" mdbRippleRadius></button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" (click)="share()">To Facebook</a>
+                        <a class="dropdown-item" (click)="share()">To Twitter</a>
+                        <a class="dropdown-item" (click)="share()">To LinkedIn</a>
+                        <a class="dropdown-item" (click)="share()">To Google+</a>
+
+                    </div>
+                </div>     
             </div>
         </div>
     </div>

@@ -21,4 +21,8 @@ export class BlogsComponent implements OnInit {
     });
   }
 
+  public share(): void {
+    alert('Share Blog');
+  }
+
 }
