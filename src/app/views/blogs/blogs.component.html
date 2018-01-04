@@ -18,11 +18,10 @@
                     <button type="button" class="btn btn-danger waves-light" mdbRippleRadius><i class="fa fa-share fa-5x"></i> Share</button>
                     <button type="button" dropdownToggle class="btn btn-danger dropdown-toggle dropdown-toggle-split px-3 waves-light" mdbRippleRadius></button>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" (click)="share()">To Facebook</a>
-                        <a class="dropdown-item" (click)="share()">To Twitter</a>
-                        <a class="dropdown-item" (click)="share()">To LinkedIn</a>
-                        <a class="dropdown-item" (click)="share()">To Google+</a>
-
+                        <a class="dropdown-item" (click)="share('FACEBOOK', post.url)">To Facebook</a>
+                        <a class="dropdown-item" (click)="share('TWITTER', post.url)">To Twitter</a>
+                        <a class="dropdown-item" (click)="share('LINKEDIN', post.url)">To LinkedIn</a>
+                        <a class="dropdown-item" (click)="share('GOOGLE+', post.url)">To Google+</a>
                     </div>
                 </div>     
             </div>

@@ -72,7 +72,6 @@
                 <h4>Website Quote Calculator</h4>
                 <p>Development pricing is very project specific, meaning these prices are not set in stone. Based on factors such as time, material needed, and purpose for your project, the fee can easily flucuate; these, however, are the most accurate estimates. <strong>Note - Payments will require half of the cost upfront as deposit, and the other half once the project is complete.</strong></p>
                 <p><strong>* represents Google's Firebase Feature. Pricing for Firebase may increase based on how much data is used, (check pricing <a href="https://firebase.google.com/pricing/">here</a>).</strong></p>
-                <p><strong>Google API Listing <a href="https://developers.google.com/apis-explorer/#p/">here</a>.</strong></p>
             </div>
         </div>
 
@@ -125,7 +124,7 @@
                         <strong>{{ pageCost | currency: "$" }}/page</strong>
                     </td>
                     <td>
-                        <input type="number" [(ngModel)]="numberOfPages" min="1" max="10">
+                        <input type="number" [(ngModel)]="numberOfPages" min="1" max="10" mdbTooltip="1 - 10 pages" placement="bottom">
                     </td>
                 </tr>
                 <!-- Domain Name -->
@@ -308,13 +307,14 @@
                         Google APIs
                     </td>
                     <td>
-                        Access to Maps, Analytics, AdMob, and more.
+                        Access to Maps, Analytics, AdMob, and more. For a list of all Google APIs, click <strong><a href="https://developers.google.com/apis-explorer/#p/">here</a></strong>.
+
                     </td>
                     <td class="green-text">
                         <strong>{{ googleAPICost | currency: "$" }}/API</strong>
                     </td>
                     <td>
-                        <input type="number" [(ngModel)]="numberOfGoogleAPIs" min="0" max="10">
+                        <input type="number" [(ngModel)]="numberOfGoogleAPIs" min="0" max="10" mdbTooltip="0 - 10 APIs" placement="bottom">
                     </td>
                 </tr>
             </tbody>
