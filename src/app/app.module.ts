@@ -1,11 +1,14 @@
 //Imported Modules
 import { BrowserModule }                from '@angular/platform-browser';
-import { FormsModule }                  from '@angular/forms';
+import { FormsModule, 
+         ReactiveFormsModule }          from '@angular/forms';
 import { NgModule, NO_ERRORS_SCHEMA }   from '@angular/core';
 import { MDBBootstrapModule }           from 'angular-bootstrap-md';
 import { ToasterModule }                from 'angular2-toaster';
 import { BrowserAnimationsModule }      from '@angular/platform-browser/animations'; //Needed for ToasterModule
 import { HttpModule }                   from '@angular/http';
+import { HashLocationStrategy, 
+         LocationStrategy}               from '@angular/common';
 
 import { AppComponent }                 from './app.component';
 
@@ -26,6 +29,7 @@ import { ContactComponent }             from './views/contact/contact.component'
 //Services
 import { EmailService }                 from './services/email.service';
 import { BlogService }                  from './services/blog.service';
+import { PageNotFoundComponent }        from './views/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -38,11 +42,13 @@ import { BlogService }                  from './services/blog.service';
     ProjectsComponent,
     ReviewsComponent,
     BlogsComponent,
-    ContactComponent
+    ContactComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     MDBBootstrapModule.forRoot(),
     RoutingModule,
     HttpModule,
@@ -54,7 +60,8 @@ import { BlogService }                  from './services/blog.service';
   ],
   providers: [
     EmailService,
-    BlogService
+    BlogService,
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [
     AppComponent

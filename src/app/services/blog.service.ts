@@ -4,10 +4,13 @@ import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class BlogService {
+  blogId    : String = '3319631330907603735';
+  apiKey    : String = 'AIzaSyBkJkq5fz7S5xzOGanTlW2vWZBOVF670aA';
+  myPostsUrl: string = 'https://www.googleapis.com/blogger/v3/blogs/' + this.blogId + '/posts?key=' + this.apiKey;
 
-  myPostsUrl: string = 'https://www.googleapis.com/blogger/v3/blogs/3319631330907603735/posts?key=AIzaSyBkJkq5fz7S5xzOGanTlW2vWZBOVF670aA';
-  //todo: break down to variables {blogId} and {apiKey}
-  constructor(private http: Http) { }
+  constructor(
+    private http: Http
+  ) { }
 
   public getPosts(): Observable<any> {
     let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON

@@ -7,11 +7,12 @@ import { AboutComponent }       from './views/about/about.component';
 import { ServiceComponent }     from './views/service/service.component';
 import { ProjectsComponent }    from './views/projects/projects.component';
 import { ReviewsComponent }     from './views/reviews/reviews.component';
-import { BlogsComponent }     from './views/blogs/blogs.component';
+import { BlogsComponent }       from './views/blogs/blogs.component';
 import { ContactComponent }     from './views/contact/contact.component';
+import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
 
 
-const routes: Routes = [
+const routes: Routes = [ 
   { path: '', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'service', component: ServiceComponent },
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: 'reviews', component: ReviewsComponent },
   { path: 'blog', component: BlogsComponent },
   { path: 'contact', component: ContactComponent },
-  { path: '**', component: HomeComponent } 
+  { path: '',   redirectTo: '/about', pathMatch: 'full' },
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({

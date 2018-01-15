@@ -1,4 +1,6 @@
 <?php
+ 	// header('Access-Control-Allow-Origin: *');  
+
 	$to      = $_POST['to'];
 	$subject = $_POST['subject'];
 	$message = $_POST['message'];

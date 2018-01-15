@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { EmailService } from '../../services/email.service';
 import { ToasterService } from 'angular2-toaster';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl } from '@angular/forms/src/model';
 
 @Component({
   selector    : 'contact',
@@ -10,60 +12,68 @@ import { ToasterService } from 'angular2-toaster';
       EmailService
   ]
 })
-export class ContactComponent implements OnInit {
-  fullName      : string;
-  email         : string;
-  message       : string = '';        
-  messageLimit  : number = 400;
-  attemptedSend : boolean = false;
-  emailRegex    : RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+export class ContactComponent implements OnInit {     
+    contactForm : FormGroup;
 
-  constructor(
-      private emailService: EmailService,
-      private toasterService: ToasterService
-    ) { }
+    constructor(
+        private emailService: EmailService,
+        private toasterService: ToasterService
+        ) { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+        //Initialize contact form.
+        this.contactForm = new FormGroup({
+            fullName: new FormControl('', [ Validators.required ]),
+            email   : new FormControl('', [ Validators.required, Validators.email ]),
+            message : new FormControl('', [ Validators.required ])
+        });
+    }
 
-  public sendEmail(form: any): void {
-    let to      : string = 'tr3umphant.designs@gmail.com';
-    let subject : string = 'New Contact - ' + this.fullName;
-    let from    : string = this.email;
-    let message : string = this.message;
+    onSubmit() {
+        let formIsValid     : Boolean           = true;
 
-    this.emailService.sendEmail(to, subject, from, message).subscribe(
-        res => {
-            this.toasterService.pop('success', 'Message Sent', 'I will respond shortly.');
-            //Clear form.
-        },
-        error => {
-            this.toasterService.pop('error', 'Error', 'Your message could not be sent at this time.');
-            console.log(error);
-        } 
-    )
+        let fullNameControl : AbstractControl   = this.contactForm.controls.fullName;
+        let emailControl    : AbstractControl   = this.contactForm.controls.email;
+        let messageControl  : AbstractControl   = this.contactForm.controls.message;
 
-    // this.attemptedSend = true;
-    // if(form.$valid){
-    //     var to: string = 'tr3umphant.designs@gmail.com';
-    //     var subject: string = 'New Contact - ' + this.fullName + ' via ' + this.email;
-    //     var body: string = this.message;
+        //Check for any errors on message control.
+        if(messageControl.errors != null && messageControl.errors.required == true){
+            formIsValid = false;
+            this.toasterService.pop('error', 'Error', 'Message is required.');
+        }
 
-    //     console.log(subject);
-    //     console.log(body);
+        //Check for any errors on email control.
+        if(emailControl.errors != null) {
+            formIsValid = false;
+            if(emailControl.errors.required == true){
+                this.toasterService.pop('error', 'Error', 'Email is required.');
+            }
+            else if(emailControl.errors.email == true){
+                this.toasterService.pop('error', 'Error', 'Not a valid email.');
+            }
+        }
 
-    //     // this.emailService.sendEmail(to, subject, body)
-    //     //     .then((result: any) => {
-    //     //         this.fullName = this.email = this.message = '';
-    //     //         form.$setPristine();
-    //     //         toastr.success('Message sent.');
-    //     //     })
-    //     //     .catch((error: any) => {
-    //     //         toastr.error('Could not send message at this time.');
-    //     //     });
-    // }else{
-    //     alert('There were erros in your submission.');
-    //     //toastr.error('There were errors in your submission.');
-    // }
-  }
+        //Check for any errors on full name control.
+        if(fullNameControl.errors != null && fullNameControl.errors.required == true){
+            formIsValid = false;
+            this.toasterService.pop('error', 'Error', 'Full Name is required.');
+        }
+
+        if(formIsValid){
+            let to      : string = 'tr3umphant.designs@gmail.com';
+            let subject : string = 'New Contact - ' + fullNameControl.value;
+            let from    : string = emailControl.value;
+            let message : string = messageControl.value;
+
+            this.emailService.sendEmail(to, subject, from, message).subscribe(
+                res => {
+                    this.toasterService.pop('success', 'Message Sent', 'I will respond shortly.');
+                },
+                error => {
+                    this.toasterService.pop('error', 'Error', 'Your message could not be sent at this time.');
+                    console.log(error);
+                } 
+            )
+        }
+    }
 }

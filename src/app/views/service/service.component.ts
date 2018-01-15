@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit }                    from '@angular/core';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-service',
@@ -9,7 +10,7 @@ export class ServiceComponent implements OnInit {
 
   totalCost                     : number;
   depositCost                   : number;
-  baseDevelopmentCost           : number  = 250.00;
+  baseDevelopmentCost           : number  = 150.00;
   baseDevelopment               : boolean = true;
   numberOfPages                 : number  = 1;    
   pageCost                      : number  = 25.99;
@@ -31,6 +32,7 @@ export class ServiceComponent implements OnInit {
   ongoingWebsiteMaintenance     : boolean = false;
   numberOfGoogleAPIs            : number  = 0;
   googleAPICost                 : number  = 29.99;
+  router                        : any     = Router;
 
   constructor() { }
 
@@ -49,15 +51,17 @@ export class ServiceComponent implements OnInit {
     this.ecommerce ? this.totalCost                   += this.ecommerceCost : null;
     this.ongoingWebsiteMaintenance ? this.totalCost   += this.ongoingWebsiteMaintenanceCost : null;
     this.totalCost                                    += this.numberOfGoogleAPIs * this.googleAPICost;
-    this.depositCost                                  = this.totalCost / 2;
+    this.depositCost                                  = this.totalCost / 3;
+
+    this.router.nav
   }
 
   public sendQuoteToContact(): void {
-    let message   : string        = 'NEW REQUEST FOR WEBSITE : FEATURES - ';
+    let message   : string;
     let features  : Array<string> = new Array<string>();
 
     //Determine Features Added
-    features.push(this.numberOfPages + ' pages');
+    features.push(this.numberOfPages == 1 ? '1 page' : this.numberOfPages + ' pages');
     
     if(this.domainName){
         features.push('domain name');
@@ -86,20 +90,21 @@ export class ServiceComponent implements OnInit {
     if(this.numberOfGoogleAPIs > 0){
         features.push(this.numberOfGoogleAPIs + ' Google apis');
     }
+
     //Prepare Message
-    for(var i = 0; i < features.length; i++){
-        if(i == features.length - 1){
-            message += features[i];
+    message = 'NEW REQUEST FOR WEBSITE : FEATURES - ';
+
+    features.forEach((feature, index) => {
+        if(index == features.length - 1){
+            message += feature;
         }else{
-            message += features[i] + ', ';
+            message += feature + ', ';
         }
-    }
+    });
+
     //Add Estimate
     message += ': ESTIMATE INCLUDING $' + this.baseDevelopmentCost.toFixed(2) + ' BASE DEVELOPMENT FEE - $' + this.totalCost.toFixed(2);
 
-    console.log(message);
-
-    //this.$state.go('contact', { message: message });
-  }
-
+    //this.router.navigate(['/contact']);   
+ }
 }

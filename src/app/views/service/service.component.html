@@ -75,6 +75,15 @@
             </div>
         </div>
 
+        <hr>
+
+        <!-- Development Fees -->
+        <div class="row">
+            <div class="col text-center">
+                <h4>Development Fees</h4>
+            </div>
+        </div>
+
         <!-- Quote Table -->
         <table class="table">
             <thead>
@@ -125,48 +134,6 @@
                     </td>
                     <td>
                         <input type="number" [(ngModel)]="numberOfPages" min="1" max="10" mdbTooltip="1 - 10 pages" placement="bottom">
-                    </td>
-                </tr>
-                <!-- Domain Name -->
-                <tr>
-                    <td>
-                        <i class="fa fa-pencil orange-text"></i>
-                    </td>
-                    <td>
-                        Domain Name
-                    </td>
-                    <td>
-                        The unique name that appears in the URL for your website.
-                    </td>
-                    <td class="green-text">
-                        <strong>{{ domainNameCost | currency: "$" }}/year</strong>
-                    </td>
-                    <td>
-                        <fieldset class="form-group">
-                            <input type="checkbox" id="domainName" [checked]="domainName" (change)="domainName = !domainName"/>
-                            <label for="domainName"></label>
-                        </fieldset>
-                    </td>
-                </tr>
-                <!-- Website Hosting -->
-                <tr>
-                    <td>
-                        <i class="fa fa-desktop orange-text"></i>
-                    </td>
-                    <td>
-                        Website Hosting
-                    </td>
-                    <td>
-                        Use my server, or host on your own server.
-                    </td>
-                    <td class="green-text">
-                        <strong>{{ websiteHostingCost | currency: "$" }}/year</strong>
-                    </td>
-                    <td>
-                        <fieldset class="form-group">
-                            <input type="checkbox" id="websiteHosting" [checked]="websiteHosting" (change)="websiteHosting = !websiteHosting"/>
-                            <label for="websiteHosting"></label>
-                        </fieldset>
                     </td>
                 </tr>
                 <!-- Email Functionality -->
@@ -319,14 +286,56 @@
                 </tr>
             </tbody>
         </table>
+
+        <!-- Extra Fees -->
         <div class="row">
-            <div class="col">
+            <div class="col text-center">
+                <h4>Extra Fees</h4>
+                <p>Things that will not be included in the final payment since they will not be provided by me, but are needed for a satisfactory website. These are estimate payments.</p>
+            </div>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr class="row">
+                    <th class="col-1"></th>
+                    <th class="col-2">Feature</th>
+                    <th class="col-6">Description</th>
+                    <th class="col-3">Cost</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Website Hosting -->
+                <tr class="row">
+                    <td class="col-1">
+                        <i class="fa fa-desktop orange-text"></i>
+                    </td>
+                    <td class="col-2">
+                        Hosting
+                    </td>
+                    <td class="col-6">
+                        Server needed to host a website, (provides domain name for project, example <span>td5.<strong>tr3umphant-designs</strong>.com</span>. Options include <a class="blue-text" href="http://www.webhostingbest10.com/visit/bluehost">bluehost.com</a>,
+                        <a class="blue-text" href="https://www.ipage.com/">iPage.com</a>,
+                        <a class="blue-text" href="http://www.webhostingbest10.com/visit/hostgator">HostGator</a>,
+                        <a class="blue-text" href="http://www.webhostingbest10.com/visit/hostgator">FatCow</a>
+                    </td>
+                    <td class="col-3 green-text">
+                        <strong>{{ websiteHostingCost | currency: "$" }} - {{ websiteHostingCost + 10 | currency: "$" }}/year</strong>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="row">
+            <div class="col-6">
                 <button class="btn orange pull-left" (click)="calculate()">Calculate Estimate</button>
                 <button [hidden]="!totalCost" class="btn blue pull-left" (click)="sendQuoteToContact()">Contact Now With This Quote</button>
-                <div class="md-form pull-right">
-                    <h1 class="green-text" [hidden]="!depositCost"><strong>{{ depositCost | currency: "$" }} Deposit</strong></h1>
-                    <h4 class="green-text" [hidden]="!totalCost">{{ totalCost | currency: "$" }} Total with deposit</h4>
-                </div>
+            </div>
+            <div class="col-3">
+                <h1 class="green-text" [hidden]="!depositCost"><strong>{{ depositCost | currency: "$" }} Deposit</strong></h1>
+            </div>
+            <div class="col-3">
+                <h4 class="green-text" [hidden]="!totalCost">{{ totalCost | currency: "$" }} total with deposit. This does not include the approximate web hosting fee of {{ websiteHostingCost | currency: "$" }}.</h4>
             </div>
         </div>
         <div class="row">
@@ -358,24 +367,4 @@
         </div>
     </div> 
 </section>
-
-
-
-    <!-- <button type="button" class="btn btn-primary waves-light" data-toggle="modal" data-target="#basicExample" (click)="frame.show()" mdbRippleRadius>
-            Bottom
-        </button>
-            
-        <div mdbModal #frame="mdb-modal" class="modal fade bottom" id="frameModalBottom" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" [config]="{backdrop: false, ignoreBackdropClick: true}">
-            <div class="modal-dialog modal-frame modal-bottom" role="document">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <div class="row px-4">
-                            <p class="pt-1 pr-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit nisi quo provident fugiat reprehenderit nostrum quos..</p>
-                            <button type="button" class="btn btn-secondary waves-light" data-dismiss="modal" (click)="frame.hide()" mdbRippleRadius>Close</button>
-                            <button type="button" class="btn btn-primary waves-light" mdbRippleRadius>Save changes</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
                             
