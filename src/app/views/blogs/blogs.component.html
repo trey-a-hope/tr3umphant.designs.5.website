@@ -5,25 +5,15 @@
                 <h1 class="orange-text animated zoomInRight"><strong>Blogs</strong></h1>
                 <hr>
                 <h4 class="animated zoomInRight">Stay up to date with my development.</h4>
-                <!-- {{ posts | json }} -->
             </div>
         </div>
         <div class="row" *ngFor="let post of posts" style="padding-top: 40px">
-            <div class=" col-12 col-sm-10">
-                <h4><strong>{{ post.title }}</strong></h4>
-                <p><i class="fa fa-clock-o"></i> {{ post.published | date:'short' }} - {{ post.author.displayName }}</p>
-                <p [innerHTML]="post.content"></p>
-                <a class="btn orange darken 1" href="{{post.url}}"><i class="fa fa-eye fa-5x"></i> Read More</a>
-                <div class="btn-group" dropdown>
-                    <button type="button" class="btn btn-danger waves-light" mdbRippleRadius><i class="fa fa-share fa-5x"></i> Share</button>
-                    <button type="button" dropdownToggle class="btn btn-danger dropdown-toggle dropdown-toggle-split px-3 waves-light" mdbRippleRadius></button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" (click)="share('FACEBOOK', post.url)">To Facebook</a>
-                        <a class="dropdown-item" (click)="share('TWITTER', post.url)">To Twitter</a>
-                        <a class="dropdown-item" (click)="share('LINKEDIN', post.url)">To LinkedIn</a>
-                        <a class="dropdown-item" (click)="share('GOOGLE+', post.url)">To Google+</a>
-                    </div>
-                </div>     
+            <div class="col-12">
+                <span class="pull-left">
+                    <h4><strong>{{ post.title }}</strong></h4>
+                    <p><i class="fa fa-clock-o"></i> {{ post.published | date:'short' }}</p>
+                </span>
+                <a class="pull-right btn orange darken 1" (click)="goToBlog(post.id)"><i class="fa fa-eye fa-5x"></i> View</a>  
             </div>
         </div>
     </div>

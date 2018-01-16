@@ -10,6 +10,7 @@ import { ReviewsComponent }     from './views/reviews/reviews.component';
 import { BlogsComponent }       from './views/blogs/blogs.component';
 import { ContactComponent }     from './views/contact/contact.component';
 import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
+import { FullBlogComponent }    from './views/full-blog/full-blog.component';
 
 
 const routes: Routes = [ 
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'reviews', component: ReviewsComponent },
   { path: 'blog', component: BlogsComponent },
   { path: 'contact', component: ContactComponent },
+  { path: 'full-blog', component: FullBlogComponent },
   { path: '',   redirectTo: '/about', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];

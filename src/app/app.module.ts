@@ -10,6 +10,7 @@ import { HttpModule }                   from '@angular/http';
 import { HashLocationStrategy, 
          LocationStrategy}               from '@angular/common';
 
+
 import { AppComponent }                 from './app.component';
 
 //Routing
@@ -30,6 +31,7 @@ import { ContactComponent }             from './views/contact/contact.component'
 import { EmailService }                 from './services/email.service';
 import { BlogService }                  from './services/blog.service';
 import { PageNotFoundComponent }        from './views/page-not-found/page-not-found.component';
+import { FullBlogComponent }            from './views/full-blog/full-blog.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import { PageNotFoundComponent }        from './views/page-not-found/page-not-fo
     ReviewsComponent,
     BlogsComponent,
     ContactComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    FullBlogComponent
   ],
   imports: [
     BrowserModule,
@@ -67,4 +70,5 @@ import { PageNotFoundComponent }        from './views/page-not-found/page-not-fo
     AppComponent
   ]
 })
+
 export class AppModule { }

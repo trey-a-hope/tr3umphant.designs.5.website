@@ -4,9 +4,7 @@ import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class EmailService {
-  //Tacky, I know.
-  // sendEmailPath: string = "http://tr3umphantdesignscom.fatcow.com/tr3umphant.designs.5.website/src/api/sendEmail.php";
-  sendEmailPath = '/assets/sendEmail.php';
+  sendEmailPath = '/assets/sendEmailJSON.php';
 
   constructor(
     private http: Http
@@ -16,7 +14,7 @@ export class EmailService {
 
     let data = JSON.stringify({
       to      : to,
-      subect  : subject,
+      subject  : subject,
       from    : from,
       message : message
     });

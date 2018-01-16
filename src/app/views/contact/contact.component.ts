@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { EmailService } from '../../services/email.service';
-import { ToasterService } from 'angular2-toaster';
+import { Component, OnInit }    from '@angular/core';
+import { EmailService }         from '../../services/email.service';
+import { ToasterService }       from 'angular2-toaster';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AbstractControl } from '@angular/forms/src/model';
+import { AbstractControl }      from '@angular/forms/src/model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector    : 'contact',
@@ -14,19 +15,27 @@ import { AbstractControl } from '@angular/forms/src/model';
 })
 export class ContactComponent implements OnInit {     
     contactForm : FormGroup;
+    sub: any;
 
     constructor(
         private emailService: EmailService,
-        private toasterService: ToasterService
+        private toasterService: ToasterService,
+        private route: ActivatedRoute
         ) { }
 
     ngOnInit() {
-        //Initialize contact form.
-        this.contactForm = new FormGroup({
-            fullName: new FormControl('', [ Validators.required ]),
-            email   : new FormControl('', [ Validators.required, Validators.email ]),
-            message : new FormControl('', [ Validators.required ])
+        this.sub = this.route.queryParams.subscribe( params => {
+            //Initialize contact form.
+            this.contactForm = new FormGroup({
+                fullName: new FormControl('', [ Validators.required ]),
+                email   : new FormControl('', [ Validators.required, Validators.email ]),
+                message : new FormControl(params['message'], [ Validators.required ])
+            });
         });
+    }
+
+    ngOnDestroy() {
+        this.sub.unsubscribe();
     }
 
     onSubmit() {

@@ -1,0 +1,24 @@
+<section id="full-blog" class="animated fadeIn" style="padding: 30px 0">
+  <div class="container">
+      <div class="row">
+          <div class="col">
+              <div class="btn-group pull-right" dropdown>
+                  <button type="button" class="btn btn-danger waves-light" mdbRippleRadius><i class="fa fa-share fa-5x"></i> Share</button>
+                  <button type="button" dropdownToggle class="btn btn-danger dropdown-toggle dropdown-toggle-split px-3 waves-light" mdbRippleRadius></button>
+                  <div class="dropdown-menu">
+                      <a class="dropdown-item" (click)="share('FACEBOOK')">To Facebook</a>
+                      <a class="dropdown-item" (click)="share('TWITTER')">To Twitter</a>
+                      <a class="dropdown-item" (click)="share('LINKEDIN')">To LinkedIn</a>
+                      <a class="dropdown-item" (click)="share('GOOGLE+')">To Google+</a>
+                  </div>
+                </div>   
+              <br>
+              <h1 class="orange-text animated zoomInRight"><strong>{{ post.title }}</strong></h1>
+              <hr>
+              <p class="animated zoomInRight"><i class="fa fa-clock-o"></i> {{ post.published | date:'short' }}</p>
+              <p [innerHTML]="post.content"></p>
+          </div>
+      </div>
+      <br>
+  </div>
+</section>

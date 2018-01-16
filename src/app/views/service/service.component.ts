@@ -1,5 +1,5 @@
 import { Component, OnInit }                    from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-service',
@@ -32,9 +32,10 @@ export class ServiceComponent implements OnInit {
   ongoingWebsiteMaintenance     : boolean = false;
   numberOfGoogleAPIs            : number  = 0;
   googleAPICost                 : number  = 29.99;
-  router                        : any     = Router;
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() { }
 
@@ -52,8 +53,6 @@ export class ServiceComponent implements OnInit {
     this.ongoingWebsiteMaintenance ? this.totalCost   += this.ongoingWebsiteMaintenanceCost : null;
     this.totalCost                                    += this.numberOfGoogleAPIs * this.googleAPICost;
     this.depositCost                                  = this.totalCost / 3;
-
-    this.router.nav
   }
 
   public sendQuoteToContact(): void {
@@ -102,9 +101,8 @@ export class ServiceComponent implements OnInit {
         }
     });
 
-    //Add Estimate
+    //Add estimate and send message to contact view.
     message += ': ESTIMATE INCLUDING $' + this.baseDevelopmentCost.toFixed(2) + ' BASE DEVELOPMENT FEE - $' + this.totalCost.toFixed(2);
-
-    //this.router.navigate(['/contact']);   
+    this.router.navigate(['/contact'], { queryParams: { message: message } });
  }
 }
