@@ -6,6 +6,9 @@ import { Observable } from 'rxjs/Rx';
 export class EmailService {
   sendEmailPath = '/assets/sendEmailJSON.php';
 
+  headers: Headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
+  options: RequestOptions = new RequestOptions({ headers: this.headers }); // Create a request option
+
   constructor(
     private http: Http
   ) { }
@@ -19,22 +22,13 @@ export class EmailService {
       message : message
     });
 
-    let headers: Headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    let options: RequestOptions = new RequestOptions({ headers: headers });
-
-    return this.http.post(this.sendEmailPath, data, options)
-                     .map(this.extractData)
-                     .catch(this.handleErrorObservable); 
+    return this.http.post(this.sendEmailPath, data, this.options)
+                     .map((res: Response) => {
+                        let body = res.json();
+                        return body.data || {};
+                     })
+                     .catch((error: Response | any) => {
+                        return Observable.throw(error.message || error);
+                     }); 
   }
-
-  private extractData(res: Response) {
-	  let body = res.json();
-      return body.data || {};
-  }
-  
-  private handleErrorObservable (error: Response | any) {
-	  return Observable.throw(error.message || error);
-  }
-
 }

@@ -10,6 +10,7 @@ export class BlogService {
 
   headers: Headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
   options: RequestOptions = new RequestOptions({ headers: this.headers }); // Create a request option
+  
   constructor(
     private http: Http
   ) { }
@@ -21,7 +22,7 @@ export class BlogService {
                      .map((res: Response)=>{
                         let body = res.json();
                         return body.items || {};
-                     }) // ...and calling .json() on the response to return data
+                     })
                      .catch((error: Response | any) => {
                           return Observable.throw(error.message || error);
                       }); 
@@ -34,7 +35,7 @@ export class BlogService {
                      .map((res: Response)=>{
                         let body = res.json();
                         return body;
-                     }) // ...and calling .json() on the response to return data
+                     })
                      .catch((error: Response | any) => {
                         return Observable.throw(error.message || error);
                      }); 

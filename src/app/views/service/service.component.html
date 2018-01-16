@@ -331,10 +331,8 @@
                 <button class="btn orange pull-left" (click)="calculate()">Calculate Estimate</button>
                 <button [hidden]="!totalCost" class="btn blue pull-left" (click)="sendQuoteToContact()">Contact Now With This Quote</button>
             </div>
-            <div class="col-3">
+            <div class="col-6">
                 <h1 class="green-text" [hidden]="!depositCost"><strong>{{ depositCost | currency: "$" }} Deposit</strong></h1>
-            </div>
-            <div class="col-3">
                 <h4 class="green-text" [hidden]="!totalCost">{{ totalCost | currency: "$" }} total with deposit. This does not include the approximate web hosting fee of {{ websiteHostingCost | currency: "$" }}.</h4>
             </div>
         </div>
