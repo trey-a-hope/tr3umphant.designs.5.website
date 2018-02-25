@@ -4,9 +4,9 @@ import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class BlogService {
-  blogId    : string = '3319631330907603735';
-  apiKey    : string = 'AIzaSyBkJkq5fz7S5xzOGanTlW2vWZBOVF670aA';
-  baseUrl   : string = 'https://www.googleapis.com/blogger/v3/blogs';
+  blogId : string = '5740173992875767119';
+  apiKey : string = 'AIzaSyB9i3PruJ_WmChfMlyiWOiC9ZK37hEv5vk';
+  baseUrl : string = 'https://www.googleapis.com/blogger/v3/blogs';
 
   headers: Headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
   options: RequestOptions = new RequestOptions({ headers: this.headers }); // Create a request option

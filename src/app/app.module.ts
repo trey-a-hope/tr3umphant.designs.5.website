@@ -9,6 +9,9 @@ import { BrowserAnimationsModule }      from '@angular/platform-browser/animatio
 import { HttpModule }                   from '@angular/http';
 import { HashLocationStrategy, 
          LocationStrategy}               from '@angular/common';
+         
+import { MatTabsModule } from '@angular/material/tabs';
+import { Md2Module }  from 'md2';
 
 
 import { AppComponent }                 from './app.component';
@@ -56,7 +59,9 @@ import { FullBlogComponent }            from './views/full-blog/full-blog.compon
     RoutingModule,
     HttpModule,
     ToasterModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatTabsModule,
+    Md2Module
   ],
   schemas: [ 
     NO_ERRORS_SCHEMA 

@@ -12,8 +12,8 @@ export class FullBlogComponent implements OnInit {
   post: any;
 
   constructor(        
-    private route       : ActivatedRoute,
-    private router      : Router,
+    private route : ActivatedRoute,
+    private router : Router,
     private blogService : BlogService,
   ) { }
 

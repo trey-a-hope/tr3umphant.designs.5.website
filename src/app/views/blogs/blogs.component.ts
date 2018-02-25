@@ -12,7 +12,7 @@ export class BlogsComponent implements OnInit {
 
   constructor(
     private blogService : BlogService,
-    private router      : Router
+    private router : Router
   ) { }
 
   ngOnInit() {

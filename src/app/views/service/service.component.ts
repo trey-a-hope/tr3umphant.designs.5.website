@@ -1,4 +1,4 @@
-import { Component, OnInit }                    from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,32 +6,71 @@ import { Router } from '@angular/router';
   templateUrl: './service.component.html',
   styleUrls: ['./service.component.scss']
 })
+
 export class ServiceComponent implements OnInit {
 
-  totalCost                     : number;
-  depositCost                   : number;
-  baseDevelopmentCost           : number  = 150.00;
-  baseDevelopment               : boolean = true;
-  numberOfPages                 : number  = 1;    
-  pageCost                      : number  = 25.99;
-  domainNameCost                : number  = 9.99;
-  domainName                    : boolean = false;
-  websiteHostingCost            : number  = 59.99;
-  websiteHosting                : boolean = false;
-  emailFunctionalityCost        : number  = 19.99;
-  emailFunctionality            : boolean = false;
-  databaseIntegrationCost       : number  = 99.99;
-  databaseIntegration           : boolean = false;
-  userAuthenticationCost        : number  = 79.99;
-  userAuthentication            : boolean = false;
-  storageCost                   : number  = 59.99;
-  storage                       : boolean = false;
-  ecommerceCost                 : number  = 189.99;
-  ecommerce                     : boolean = false;
-  ongoingWebsiteMaintenanceCost : number  = 29.99;
-  ongoingWebsiteMaintenance     : boolean = false;
-  numberOfGoogleAPIs            : number  = 0;
-  googleAPICost                 : number  = 29.99;
+  web: any = {
+    totalCost: 0.00,
+    depositCost: 0.00,
+    baseDevelopmentCost: 300.00,
+    baseDevelopment: true,
+    numberOfPages: 1,  
+    pageCost: 25.99,
+    domainNameCost: 9.99,
+    domainName: false,
+    websiteHostingCost: 59.99,
+    websiteHosting: false,
+    emailFunctionalityCost:  19.99,
+    emailFunctionality:  false,
+    databaseIntegrationCost: 99.99,
+    databaseIntegration: false,
+    userAuthenticationCost: 79.99,
+    userAuthentication: false,
+    storageCost: 59.99,
+    storage: false,
+    ecommerceCost: 189.99,
+    ecommerce:  false,
+    ongoingWebsiteMaintenanceCost: 29.99,
+    ongoingWebsiteMaintenance: false,
+    numberOfGoogleAPIs:  0,
+    googleAPICost: 29.99
+  }
+
+  android: any = {
+      totalCost: 0.00,
+      depositCost: 0.00,
+      baseDevelopmentCost: 3500.00,  
+      emailFunctionalityCost: 19.99,
+      emailFunctionality: false,
+      databaseIntegrationCost: 99.99,
+      databaseIntegration: false,
+      userAuthenticationCost: 79.99,
+      userAuthentication: false,     
+      storageCost: 59.99, 
+      storage: false,
+      ecommerceCost: 189.99,
+      ecommerce: false,
+      ongoingMaintenanceCost: 9.99,
+      ongoingMaintenance: false
+  }
+
+  ios: any = {
+      totalCost: 0.00,
+      depositCost: 0.00,
+      baseDevelopmentCost: 3000.00,  
+      emailFunctionalityCost: 19.99,
+      emailFunctionality: false,
+      databaseIntegrationCost: 99.99,
+      databaseIntegration: false,
+      userAuthenticationCost: 79.99,
+      userAuthentication: false,     
+      storageCost: 59.99, 
+      storage: false,
+      ecommerceCost: 189.99,
+      ecommerce: false,
+      ongoingMaintenanceCost: 9.99,
+      ongoingMaintenance: false
+  }
 
   constructor(
     private router: Router
@@ -39,70 +78,185 @@ export class ServiceComponent implements OnInit {
 
   ngOnInit() { }
 
-  public calculate(): void {
-    this.totalCost                                    = 0;
-    this.totalCost                                    += this.baseDevelopmentCost;
-    this.totalCost                                    += this.numberOfPages * this.pageCost;
-    this.domainName ? this.totalCost                  += this.domainNameCost : null;
-    this.websiteHosting ? this.totalCost              += this.websiteHostingCost : null;
-    this.emailFunctionality ? this.totalCost          += this.emailFunctionalityCost : null;
-    this.databaseIntegration ? this.totalCost         += this.databaseIntegrationCost : null;
-    this.userAuthentication ? this.totalCost          += this.userAuthenticationCost : null;
-    this.storage ? this.totalCost                     += this.storageCost : null;
-    this.ecommerce ? this.totalCost                   += this.ecommerceCost : null;
-    this.ongoingWebsiteMaintenance ? this.totalCost   += this.ongoingWebsiteMaintenanceCost : null;
-    this.totalCost                                    += this.numberOfGoogleAPIs * this.googleAPICost;
-    this.depositCost                                  = this.totalCost / 3;
+  public calculateAndroidCost = () => {
+    this.android.totalCost = 0;
+    this.android.totalCost += this.android.baseDevelopmentCost;
+    this.android.emailFunctionality ? (this.android.totalCost += this.android.emailFunctionalityCost) : null;
+    this.android.databaseIntegration ? (this.android.totalCost += this.android.databaseIntegrationCost) : null;
+    this.android.userAuthentication ? (this.android.totalCost += this.android.userAuthenticationCost) : null;
+    this.android.storage ? (this.android.totalCost += this.android.storageCost) : null;
+    this.android.ecommerce ? (this.android.totalCost += this.android.ecommerceCost) : null;
+    this.android.ongoingWebsiteMaintenance ? (this.android.totalCost  += this.android.ongoingMaintenanceCost) : null;
+    this.android.depositCost = this.android.totalCost / 3;
+
+    this.android.totalCost = Math.ceil(this.android.totalCost);
+    this.android.depositCost = Math.ceil(this.android.depositCost);
   }
 
-  public sendQuoteToContact(): void {
+  public calculateWebCost = () => {
+    this.web.totalCost = 0;
+    this.web.totalCost += this.web.baseDevelopmentCost;
+    this.web.totalCost += this.web.numberOfPages * this.web.pageCost;
+    this.web.totalCost += this.web.numberOfGoogleAPIs * this.web.googleAPICost;
+    this.web.domainName ? this.web.totalCost += this.web.domainNameCost : null;
+    this.web.websiteHosting ? this.web.totalCost += this.web.websiteHostingCost : null;
+    this.web.emailFunctionality ? this.web.totalCost += this.web.emailFunctionalityCost : null;
+    this.web.databaseIntegration ? this.web.totalCost += this.web.databaseIntegrationCost : null;
+    this.web.userAuthentication ? this.web.totalCost += this.web.userAuthenticationCost : null;
+    this.web.storage ? this.web.totalCost += this.web.storageCost : null;
+    this.web.ecommerce ? this.web.totalCost += this.web.ecommerceCost : null;
+    this.web.ongoingMaintenance ? this.web.totalCost += this.web.ongoingMaintenanceCost : null;
+    this.web.depositCost = this.web.totalCost / 3;
+
+    this.web.totalCost = Math.ceil(this.web.totalCost);
+    this.web.depositCost = Math.ceil(this.web.depositCost);
+  }
+
+  public calculateiOSCost = () => {
+    this.ios.totalCost = 0;
+    this.ios.totalCost += this.ios.baseDevelopmentCost;
+    this.ios.emailFunctionality ? (this.ios.totalCost += this.ios.emailFunctionalityCost) : null;
+    this.ios.databaseIntegration ? (this.ios.totalCost += this.ios.databaseIntegrationCost) : null;
+    this.ios.userAuthentication ? (this.ios.totalCost += this.ios.userAuthenticationCost) : null;
+    this.ios.storage ? (this.ios.totalCost += this.ios.storageCost) : null;
+    this.ios.ecommerce ? (this.ios.totalCost += this.ios.ecommerceCost) : null;
+    this.ios.ongoingWebsiteMaintenance ? (this.ios.totalCost  += this.ios.ongoingMaintenanceCost) : null;
+    this.ios.depositCost = this.ios.totalCost / 3;
+
+    this.ios.totalCost = Math.ceil(this.ios.totalCost);
+    this.ios.depositCost = Math.ceil(this.ios.depositCost);
+  }
+
+  public sendQuoteToContact(app: String): void {
     let message   : string;
     let features  : Array<string> = new Array<string>();
 
-    //Determine Features Added
-    features.push(this.numberOfPages == 1 ? '1 page' : this.numberOfPages + ' pages');
+    switch(app){
+        case 'Web':
+            features.push(this.web.numberOfPages == 1 ? '1 page' : this.web.numberOfPages + ' pages');
     
-    if(this.domainName){
-        features.push('domain name');
-    }
-    if(this.websiteHosting){
-        features.push('website hosting');
-    }
-    if(this.emailFunctionality){
-        features.push('email functionality');
-    }
-    if(this.databaseIntegration){
-        features.push('database integration');
-    }
-    if(this.userAuthentication){
-        features.push('user authentication');
-    }
-    if(this.storage){
-        features.push('storage');
-    }
-    if(this.ecommerce){
-        features.push('ecommerce');
-    }
-    if(this.ongoingWebsiteMaintenance){
-        features.push('ongoing web maintenance');
-    }
-    if(this.numberOfGoogleAPIs > 0){
-        features.push(this.numberOfGoogleAPIs + ' Google apis');
-    }
+            if(this.web.domainName){
+                features.push('domain name');
+            }
+            if(this.web.websiteHosting){
+                features.push('website hosting');
+            }
+            if(this.web.emailFunctionality){
+                features.push('email functionality');
+            }
+            if(this.web.databaseIntegration){
+                features.push('database integration');
+            }
+            if(this.web.userAuthentication){
+                features.push('user authentication');
+            }
+            if(this.web.storage){
+                features.push('storage');
+            }
+            if(this.web.ecommerce){
+                features.push('ecommerce');
+            }
+            if(this.web.ongoingWebsiteMaintenance){
+                features.push('ongoing web maintenance');
+            }
+            if(this.web.numberOfGoogleAPIs > 0){
+                features.push(this.web.numberOfGoogleAPIs + ' Google apis');
+            }
 
-    //Prepare Message
-    message = 'NEW REQUEST FOR WEBSITE : FEATURES - ';
+            //Prepare Message
+            message = 'NEW REQUEST FOR WEBSITE : FEATURES - ';
 
-    features.forEach((feature, index) => {
-        if(index == features.length - 1){
-            message += feature;
-        }else{
-            message += feature + ', ';
-        }
-    });
+            features.forEach((feature, index) => {
+                if(index == features.length - 1){
+                    message += feature;
+                }else{
+                    message += feature + ', ';
+                }
+            });
 
-    //Add estimate and send message to contact view.
-    message += ': ESTIMATE INCLUDING $' + this.baseDevelopmentCost.toFixed(2) + ' BASE DEVELOPMENT FEE - $' + this.totalCost.toFixed(2);
-    this.router.navigate(['/contact'], { queryParams: { message: message } });
+            //Add estimate and send message to contact view.
+            message += ': ESTIMATE INCLUDING $' + this.web.baseDevelopmentCost.toFixed(2) + ' BASE DEVELOPMENT FEE - $' + this.web.totalCost.toFixed(2);
+            this.router.navigate(['/contact'], { queryParams: { message: message } });
+
+            break;
+        case 'Android':
+            if(this.android.emailFunctionality){
+                features.push('email functionality');
+            }
+            if(this.android.databaseIntegration){
+                features.push('database integration');
+            }
+            if(this.android.userAuthentication){
+                features.push('user authentication');
+            }
+            if(this.android.storage){
+                features.push('storage');
+            }
+            if(this.android.ecommerce){
+                features.push('ecommerce');
+            }
+            if(this.android.ongoingWebsiteMaintenance){
+                features.push('ongoing web maintenance');
+            }
+            if(this.android.numberOfGoogleAPIs > 0){
+                features.push(this.android.numberOfGoogleAPIs + ' Google apis');
+            }
+
+            //Prepare Message
+            message = 'NEW REQUEST FOR ANDROID APP : FEATURES - ';
+
+            features.forEach((feature, index) => {
+                if(index == features.length - 1){
+                    message += feature;
+                }else{
+                    message += feature + ', ';
+                }
+            });
+
+            //Add estimate and send message to contact view.
+            message += ': ESTIMATE INCLUDING $' + this.android.baseDevelopmentCost.toFixed(2) + ' BASE DEVELOPMENT FEE - $' + this.android.totalCost.toFixed(2);
+            this.router.navigate(['/contact'], { queryParams: { message: message } });
+
+            break;
+        case 'iOS':
+            if(this.ios.emailFunctionality){
+                features.push('email functionality');
+            }
+            if(this.ios.databaseIntegration){
+                features.push('database integration');
+            }
+            if(this.ios.userAuthentication){
+                features.push('user authentication');
+            }
+            if(this.ios.storage){
+                features.push('storage');
+            }
+            if(this.ios.ecommerce){
+                features.push('ecommerce');
+            }
+            if(this.ios.ongoingWebsiteMaintenance){
+                features.push('ongoing web maintenance');
+            }
+            if(this.ios.numberOfGoogleAPIs > 0){
+                features.push(this.ios.numberOfGoogleAPIs + ' Google apis');
+            }
+
+            //Prepare Message
+            message = 'NEW REQUEST FOR iOS APP : FEATURES - ';
+
+            features.forEach((feature, index) => {
+                if(index == features.length - 1){
+                    message += feature;
+                }else{
+                    message += feature + ', ';
+                }
+            });
+
+            //Add estimate and send message to contact view.
+            message += ': ESTIMATE INCLUDING $' + this.ios.baseDevelopmentCost.toFixed(2) + ' BASE DEVELOPMENT FEE - $' + this.ios.totalCost.toFixed(2);
+            this.router.navigate(['/contact'], { queryParams: { message: message } });
+            break;
+        default:break;
+    }
  }
 }
