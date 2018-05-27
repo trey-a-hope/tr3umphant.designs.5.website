@@ -10,6 +10,8 @@ export class ProjectsComponent implements OnInit {
   public tr3umphantDesigns20 = require("../../../../img/projects/tr3umphant_designs_2.0.png");
   public gointercommarketing = require("../../../../img/projects/gointercommarketing.png");
   public treyahope = require("../../../../img/projects/treyahope.png");
+  public tr3designs_android = require("../../../../img/projects/tr3designs_android.png");
+  public tr3designs_ios = require("../../../../img/projects/tr3designs_ios.png");
 
   constructor() { }
 
